@@ -13,6 +13,21 @@ const initialState = [
         text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis dolore quas dolores vel veniam sunt accusantium enim, aut sapiente ipsum.`
       }
     ]
+  },
+  {
+    title: 'Now',
+    id: 1,
+    cards: [
+      {
+        id: 0,
+        text:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, saepe.'
+      },
+      {
+        id: 1,
+        text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis dolore quas dolores vel veniam sunt accusantium enim, aut sapiente ipsum.`
+      }
+    ]
   }
 ];
 
