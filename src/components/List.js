@@ -1,11 +1,13 @@
 import React from 'react';
 import ListCard from './ListCard';
 
-const List = props => {
+const List = ({ title, cards }) => {
   return (
     <div style={styles.container}>
-      <h4>{props.title}</h4>
-      <ListCard />
+      <h4>{title}</h4>
+      {cards.map(card => (
+        <ListCard text={card.text} />
+      ))}
     </div>
   );
 };
