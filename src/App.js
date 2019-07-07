@@ -11,7 +11,12 @@ class App extends Component {
         <h2>Welcome to Bootlerello.</h2>
         <div style={styles.container}>
           {lists.map(list => (
-            <List key={list.id} title={list.title} cards={list.cards} />
+            <List
+              key={list.id}
+              listId={list.id}
+              title={list.title}
+              cards={list.cards}
+            />
           ))}
           <ActionButton list />
         </div>

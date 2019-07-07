@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Icon, Card, Button } from '@material-ui/core';
 import Textarea from 'react-textarea-autosize';
+import { connect } from 'react-redux';
+
+import { addList, addCard } from '../actions';
 
 class ActionButton extends Component {
   state = {
@@ -14,6 +17,27 @@ class ActionButton extends Component {
 
   closeForm = e => {
     this.setState(({ open }) => ({ open: !open }));
+  };
+
+  handleAddList = () => {
+    const { text } = this.state;
+
+    if (text) {
+      this.props.addList(text);
+      this.setState({ text: '' });
+    }
+  };
+
+  handleAddCard = () => {
+    const { text } = this.state;
+    const { listId } = this.props;
+
+    // console.log(listId);
+
+    if (text) {
+      this.props.addCard(listId, text);
+      this.setState({ text: '' });
+    }
   };
 
   renderForm = () => {
@@ -54,6 +78,9 @@ class ActionButton extends Component {
 
         <div style={styles.formButtonGroup}>
           <Button
+            // using onMouseDown cuz it fires before onBlur
+
+            onMouseDown={list ? this.handleAddList : this.handleAddCard}
             variant="contained"
             style={{ color: 'white', backgroundColor: '#5aac44' }}
           >
@@ -111,4 +138,7 @@ const styles = {
   }
 };
 
-export default ActionButton;
+export default connect(
+  null,
+  { addList, addCard }
+)(ActionButton);

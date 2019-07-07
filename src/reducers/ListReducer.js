@@ -1,3 +1,7 @@
+import { CARD, LIST } from '../actions';
+
+const uuidv4 = require('uuid/v4');
+
 const initialState = [
   {
     title: 'Last',
@@ -37,6 +41,37 @@ const initialState = [
 
 const ListReducer = (state = initialState, action) => {
   switch (action.type) {
+    case LIST.ADD_LIST:
+      return [
+        ...state,
+        {
+          title: action.payload,
+          cards: [],
+          id: uuidv4()
+        }
+      ];
+
+    case CARD.ADD_CARD:
+      const newCard = {
+        id: uuidv4(),
+        text: action.payload.text
+      };
+      // const list = state.filter(item => item.id === action.payload.listId);
+
+      // return list[0].cards.concat(newCard);
+
+      const newState = state.map(list => {
+        if (list.id === action.payload.listId) {
+          return {
+            ...list,
+            cards: [...list.cards, newCard]
+          };
+        } else {
+          return list;
+        }
+      });
+      return newState;
+
     default:
       return state;
   }
