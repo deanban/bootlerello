@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import List from './components/List';
 import { connect } from 'react-redux';
+import ActionButton from './components/ActionButton';
 
 class App extends Component {
   render() {
     const { lists } = this.props;
     return (
       <div>
-        <h2>Hello</h2>
+        <h2>Welcome to Bootlerello.</h2>
         <div style={styles.container}>
           {lists.map(list => (
             <List key={list.id} title={list.title} cards={list.cards} />
           ))}
+          <ActionButton list />
         </div>
       </div>
     );
