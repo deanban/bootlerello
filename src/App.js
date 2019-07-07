@@ -10,7 +10,7 @@ class App extends Component {
         <h2>Hello</h2>
         <div style={styles.container}>
           {lists.map(list => (
-            <List title={list.title} cards={list.cards} />
+            <List key={list.id} title={list.title} cards={list.cards} />
           ))}
         </div>
       </div>

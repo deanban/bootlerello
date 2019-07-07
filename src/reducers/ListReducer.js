@@ -26,6 +26,10 @@ const initialState = [
       {
         id: 1,
         text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis dolore quas dolores vel veniam sunt accusantium enim, aut sapiente ipsum.`
+      },
+      {
+        id: 2,
+        text: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque ut ab pariatur distinctio ducimus quis!`
       }
     ]
   }
