@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
-import List from './components/List';
-import { connect } from 'react-redux';
-import ActionButton from './components/ActionButton';
-
 import { DragDropContext } from 'react-beautiful-dnd';
+import { connect } from 'react-redux';
+
+import List from './components/List';
+import ActionButton from './components/ActionButton';
+import { sortCard } from './actions';
 
 class App extends Component {
-  onDragEnd = () => {
-    console.log(this);
+  onDragEnd = result => {
+    // console.log(this);
+
+    //reorder after drag
+    const { destination, source, draggableId } = result;
+
+    //if destination is null, don't drop
+    if (!destination) return;
+
+    this.props.sortCard(
+      source.droppableId,
+      destination.droppableId,
+      source.index,
+      destination.index,
+      draggableId
+    );
   };
 
   render() {
@@ -44,4 +59,7 @@ const mapStateToProps = state => ({
   lists: state.lists
 });
 
-export default connect(mapStateToProps)(App);
+export default connect(
+  mapStateToProps,
+  { sortCard }
+)(App);
