@@ -5,34 +5,34 @@ const uuidv4 = require('uuid/v4');
 const initialState = [
   {
     title: 'Last',
-    id: 0,
+    id: uuidv4(),
     cards: [
       {
-        id: 0,
+        id: uuidv4(),
         text:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, saepe.'
       },
       {
-        id: 1,
+        id: uuidv4(),
         text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis dolore quas dolores vel veniam sunt accusantium enim, aut sapiente ipsum.`
       }
     ]
   },
   {
     title: 'Now',
-    id: 1,
+    id: uuidv4(),
     cards: [
       {
-        id: 0,
+        id: uuidv4(),
         text:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, saepe.'
       },
       {
-        id: 1,
+        id: uuidv4(),
         text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis dolore quas dolores vel veniam sunt accusantium enim, aut sapiente ipsum.`
       },
       {
-        id: 2,
+        id: uuidv4(),
         text: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque ut ab pariatur distinctio ducimus quis!`
       }
     ]

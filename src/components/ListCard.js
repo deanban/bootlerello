@@ -3,6 +3,7 @@ import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
+import { Draggable } from 'react-beautiful-dnd';
 
 const useStyles = makeStyles({
   card: {
@@ -22,14 +23,28 @@ const useStyles = makeStyles({
   }
 });
 
-const ListCard = ({ text }) => {
+const ListCard = ({ text, cardId, index }) => {
   const classes = useStyles();
   return (
-    <Card className={classes.card}>
-      <Typography className={classes.title} color="textPrimary" gutterBottom>
-        <CardContent>{text}</CardContent>
-      </Typography>
-    </Card>
+    <Draggable draggableId={String(cardId)} index={index}>
+      {provided => (
+        <div
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <Card className={classes.card}>
+            <Typography
+              className={classes.title}
+              color="textPrimary"
+              gutterBottom
+            >
+              <CardContent>{text}</CardContent>
+            </Typography>
+          </Card>
+        </div>
+      )}
+    </Draggable>
   );
 };
 
