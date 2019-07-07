@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import List from './components/List';
 import ActionButton from './components/ActionButton';
 import { sortCard } from './actions';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 class App extends Component {
   onDragEnd = result => {
@@ -31,7 +37,7 @@ class App extends Component {
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div>
           <h2>Welcome to Bootlerello.</h2>
-          <div style={styles.container}>
+          <Container>
             {lists.map(list => (
               <List
                 key={list.id}
@@ -41,19 +47,20 @@ class App extends Component {
               />
             ))}
             <ActionButton list />
-          </div>
+          </Container>
         </div>
       </DragDropContext>
     );
   }
 }
 
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'row'
-  }
-};
+//no longer using jss. delete
+// const styles = {
+//   container: {
+//     display: 'flex',
+//     flexDirection: 'row'
+//   }
+// };
 
 const mapStateToProps = state => ({
   lists: state.lists
