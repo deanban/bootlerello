@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import List from './components/List';
 import ActionButton from './components/ActionButton';
-import { sortCard } from './actions';
+import { sortCardOrList } from './actions';
 
 const Container = styled.div`
   display: flex;
@@ -15,19 +15,18 @@ const Container = styled.div`
 class App extends Component {
   onDragEnd = result => {
     // console.log(this);
-
     //reorder after drag
-    const { destination, source, draggableId } = result;
-
+    const { destination, source, draggableId, type } = result;
     //if destination is null, don't drop
     if (!destination) return;
 
-    this.props.sortCard(
+    this.props.sortCardOrList(
       source.droppableId,
       destination.droppableId,
       source.index,
       destination.index,
-      draggableId
+      draggableId,
+      type
     );
   };
 
@@ -37,17 +36,22 @@ class App extends Component {
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div>
           <h2>Welcome to Bootlerello.</h2>
-          <Container>
-            {lists.map(list => (
-              <List
-                key={list.id}
-                listId={list.id}
-                title={list.title}
-                cards={list.cards}
-              />
-            ))}
-            <ActionButton list />
-          </Container>
+          <Droppable droppableId="list" direction="horizontal" type="list">
+            {provided => (
+              <Container {...provided.droppableProps} ref={provided.innerRef}>
+                {lists.map((list, index) => (
+                  <List
+                    key={list.id}
+                    listId={list.id}
+                    title={list.title}
+                    cards={list.cards}
+                    index={index}
+                  />
+                ))}
+                <ActionButton list />
+              </Container>
+            )}
+          </Droppable>
         </div>
       </DragDropContext>
     );
@@ -68,5 +72,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { sortCard }
+  { sortCardOrList }
 )(App);

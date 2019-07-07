@@ -1,4 +1,4 @@
-import { CARD } from '../actions';
+import { CARD, DND } from '../actions';
 
 export const addCard = (listId, text) => {
   return {
@@ -7,21 +7,23 @@ export const addCard = (listId, text) => {
   };
 };
 
-export const sortCard = (
+export const sortCardOrList = (
   droppableIdStart,
   droppableIdEnd,
   droppableIndexStart,
   droppableIndexEnd,
-  draggableId
+  draggableId,
+  type
 ) => {
   return {
-    type: CARD.ON_DRAG,
+    type: DND.ON_DND,
     payload: {
       droppableIdStart,
       droppableIdEnd,
       droppableIndexStart,
       droppableIndexEnd,
-      draggableId
+      draggableId,
+      type
     }
   };
 };

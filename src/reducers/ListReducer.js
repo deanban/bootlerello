@@ -1,10 +1,10 @@
-import { CARD, LIST } from '../actions';
+import { CARD, LIST, DND } from '../actions';
 
 const uuidv4 = require('uuid/v4');
 
 const initialState = [
   {
-    title: 'Last',
+    title: 'To Do',
     id: uuidv4(),
     cards: [
       {
@@ -15,11 +15,23 @@ const initialState = [
       {
         id: uuidv4(),
         text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis dolore quas dolores vel veniam sunt accusantium enim, aut sapiente ipsum.`
+      },
+      {
+        id: uuidv4(),
+        text: `Lorem ipsum dolor sit amet consectetur.`
+      },
+      {
+        id: uuidv4(),
+        text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero rem unde optio!`
+      },
+      {
+        id: uuidv4(),
+        text: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum, sequi!`
       }
     ]
   },
   {
-    title: 'Now',
+    title: 'In Progress',
     id: uuidv4(),
     cards: [
       {
@@ -34,6 +46,29 @@ const initialState = [
       {
         id: uuidv4(),
         text: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque ut ab pariatur distinctio ducimus quis!`
+      }
+    ]
+  },
+  {
+    title: 'Done',
+    id: uuidv4(),
+    cards: [
+      {
+        id: uuidv4(),
+        text:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, saepe.'
+      },
+      {
+        id: uuidv4(),
+        text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis dolore quas dolores vel veniam sunt accusantium enim, aut sapiente ipsum.`
+      },
+      {
+        id: uuidv4(),
+        text: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque ut ab pariatur distinctio ducimus quis!`
+      },
+      {
+        id: uuidv4(),
+        text: `Lorem ipsum dolor, sit amet consectetur adipisicing elit.`
       }
     ]
   }
@@ -73,7 +108,7 @@ const ListReducer = (state = initialState, action) => {
       return newState;
     }
 
-    case CARD.ON_DRAG:
+    case DND.ON_DND:
       const newState = [...state];
 
       const {
@@ -81,8 +116,16 @@ const ListReducer = (state = initialState, action) => {
         droppableIdEnd,
         droppableIndexStart,
         droppableIndexEnd,
-        draggableId
+        draggableId,
+        type
       } = action.payload;
+
+      //dnd of a list
+      if (type === 'list') {
+        const list = newState.splice(droppableIndexStart, 1);
+        newState.splice(droppableIndexEnd, 0, ...list);
+        return newState;
+      }
 
       //dnd in the same list
       if (droppableIdStart === droppableIdEnd) {
