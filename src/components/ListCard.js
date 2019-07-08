@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
 import { Draggable } from 'react-beautiful-dnd';
 
-import Modal from './Modal';
+import Modal from './ModalContainer/Modal';
 
 const useStyles = makeStyles({
   card: {
@@ -45,7 +45,7 @@ const ListCard = ({ text, cardId, index }) => {
             >
               <CardContent>{text}</CardContent>
               {showModal ? (
-                <Modal onClose={() => setShowModal(false)}>{text}</Modal>
+                <Modal onClose={() => setShowModal(false)} text={text} />
               ) : null}
             </Typography>
           </Card>
