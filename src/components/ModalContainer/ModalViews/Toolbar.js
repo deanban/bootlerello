@@ -1,18 +1,19 @@
 import React from 'react';
 import Button from './Button';
 
-const Toolbar = () => {
+const Toolbar = ({ onClose }) => {
   return (
     <div
       style={{
         width: '25%',
         height: '50px',
         position: 'absolute',
-        left: '0',
+        marginleft: '0',
+
         zIndex: '999'
       }}
     >
-      <Button />
+      <Button onClose={onClose} />
     </div>
   );
 };

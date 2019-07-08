@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from '@material-ui/core';
 
-const Button = () => {
+const Button = ({ onClose }) => {
   return (
     <button
       style={{
@@ -18,7 +18,7 @@ const Button = () => {
         zIndex: '1999'
       }}
     >
-      <Icon>close</Icon>
+      <Icon onClick={onClose}>close</Icon>
     </button>
   );
 };

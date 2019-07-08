@@ -25,7 +25,6 @@ const Modal = ({ onClose, text }) => {
           zIndex: 1001,
           opacity: 1
         }}
-        onClick={onClose}
       >
         <Card
           style={{
@@ -36,7 +35,7 @@ const Modal = ({ onClose, text }) => {
             minHeight: '70vh'
           }}
         >
-          <Toolbar />
+          <Toolbar onClose={onClose} />
           <Sidebar />
           <Mainbar text={text} />
         </Card>

@@ -4,9 +4,9 @@ const Mainbar = ({ text }) => {
   return (
     <div
       style={{
-        display: 'inline-block',
-        minWidth: '70%',
-        overflow: 'auto'
+        display: 'flex',
+        width: '70%',
+        overflow: 'hidden'
       }}
     >
       <div
