@@ -38,9 +38,6 @@ const ListCard = ({ text, cardId, index }) => {
           {...provided.dragHandleProps}
         >
           <Card className={classes.card} onClick={() => setShowModal(true)}>
-            {showModal ? (
-              <Modal onClose={() => setShowModal(false)} text={text} />
-            ) : null}
             <Typography
               className={classes.title}
               color="textPrimary"
@@ -49,6 +46,9 @@ const ListCard = ({ text, cardId, index }) => {
               <CardContent>{text}</CardContent>
             </Typography>
           </Card>
+          {showModal ? (
+            <Modal onClose={() => setShowModal(false)} text={text} />
+          ) : null}
         </div>
       )}
     </Draggable>

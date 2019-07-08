@@ -13,7 +13,7 @@ const Sidebar = () => {
     >
       <div
         style={{
-          marginBottom: '2rem',
+          marginTop: '2rem',
           position: 'relative'
         }}
       >

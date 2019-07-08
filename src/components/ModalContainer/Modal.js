@@ -12,6 +12,7 @@ const Modal = ({ onClose, text }) => {
   const portal = () => {
     return (
       <div
+        onClick={onClose}
         style={{
           position: 'fixed',
           top: '0',
@@ -35,7 +36,7 @@ const Modal = ({ onClose, text }) => {
             minHeight: '70vh'
           }}
         >
-          <Toolbar onClose={onClose} />
+          <Toolbar />
           <Sidebar />
           <Mainbar text={text} />
         </Card>

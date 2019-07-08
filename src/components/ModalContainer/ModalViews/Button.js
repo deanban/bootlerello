@@ -1,16 +1,16 @@
 import React from 'react';
 import { Icon } from '@material-ui/core';
 
-const Button = ({ onClose }) => {
+const Button = () => {
   return (
     <button
       style={{
         position: 'absolute',
         backgroundColor: 'transparent',
 
-        right: '1rem',
+        left: '1rem',
 
-        top: '1rem',
+        top: '2rem',
         border: '0',
         cursor: 'pointer',
         outline: '0',
@@ -18,7 +18,8 @@ const Button = ({ onClose }) => {
         zIndex: '1999'
       }}
     >
-      <Icon onClick={onClose}>close</Icon>
+      <Icon style={{ marginRight: '10px' }}>edit</Icon>
+      <Icon>fullscreen</Icon>
     </button>
   );
 };

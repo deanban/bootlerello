@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
 
-const Toolbar = ({ onClose }) => {
+const Toolbar = () => {
   return (
     <div
       style={{
@@ -13,7 +13,7 @@ const Toolbar = ({ onClose }) => {
         zIndex: '999'
       }}
     >
-      <Button onClose={onClose} />
+      <Button />
     </div>
   );
 };
